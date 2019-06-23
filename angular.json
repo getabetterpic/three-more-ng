@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "tmm",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -62,7 +62,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "three-more-ng:build"
+            "browserTarget": "three-more-ng:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
