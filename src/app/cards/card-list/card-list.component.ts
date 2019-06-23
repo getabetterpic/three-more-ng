@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CardsService } from '../../core/services/cards.service';
+import { OnChange } from '../../core/decorators/on-change';
 
 @Component({
   selector: 'tmm-card-list',
@@ -7,6 +8,10 @@ import { CardsService } from '../../core/services/cards.service';
   styleUrls: ['./card-list.component.scss']
 })
 export class CardListComponent implements OnInit {
+  @OnChange<string>(function(searchText) {
+    this.getCards(searchText);
+  })
+  @Input() public searchText: string;
   public cards: any[] = [];
 
   constructor(

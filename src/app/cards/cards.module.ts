@@ -6,9 +6,10 @@ import { SharedModule } from '../shared/shared.module';
 import { CardsRoutingModule } from './cards-routing.module';
 
 import { CardListComponent } from './card-list/card-list.component';
+import { CardsPageComponent } from './cards-page/cards-page.component';
 
 @NgModule({
-  declarations: [CardListComponent],
+  declarations: [CardListComponent, CardsPageComponent],
   imports: [
     CommonModule,
     CardsRoutingModule,

@@ -12,7 +12,7 @@ export class CardsService {
   ) { }
 
   public index(search: string = '', page: string = '1', perPage?: string): Observable<any> {
-    const params = { search, page, perPage };
+    const params = { q: search, page, perPage };
     return this.http.get('/api/v1/cards', { params });
   }
 }

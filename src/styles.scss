@@ -1,6 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/purple-green.css';
-
 @import url('https://fonts.googleapis.com/css?family=Alegreya:400,500&display=swap');
 
 @import '~@angular/material/theming';
@@ -10,6 +8,8 @@ $custom-typography: mat-typography-config(
 );
 
 @include angular-material-typography($custom-typography);
+
+@import '~@angular/material/prebuilt-themes/purple-green.css';
 
 .u-padding-left-16 {
   padding-left: 16px;
