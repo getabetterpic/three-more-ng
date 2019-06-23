@@ -1,7 +1,7 @@
-<mat-list>
-  <mat-list-item *ngFor="let card of cards">
+<mat-nav-list>
+  <a mat-list-item [routerLink]="['/cards', card.id]" *ngFor="let card of cards">
     <img matListAvatar [src]="card.art" [alt]="card.name">
     <h3 matLine>{{card.name}}</h3>
     <p matLine>{{card.set}}</p>
-  </mat-list-item>
-</mat-list>
+  </a>
+</mat-nav-list>

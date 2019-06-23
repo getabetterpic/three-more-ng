@@ -17,11 +17,18 @@ describe('CardsService', () => {
       service.index().subscribe();
       expect(http.get).toHaveBeenCalledWith('/api/v1/cards', {
         params: {
-          search: '',
+          q: '',
           page: '1',
           perPage: undefined
         }
       });
+    });
+  });
+
+  describe('show', () => {
+    it('gets the card by id', () => {
+      service.show('123').subscribe();
+      expect(http.get).toHaveBeenCalledWith('/api/v1/cards/123');
     });
   });
 });

@@ -1,0 +1,22 @@
+<mat-card class="card-card">
+  <mat-card-header>
+    <mat-card-title>{{card.name}}</mat-card-title>
+    <mat-card-subtitle>{{card.set}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="card.png" [alt]="card.name" class="card-card--image" />
+  <mat-card-content>
+    <!-- Power and Toughness -->
+    <div *ngIf="card.power != null && card.toughness != null">
+      <h4>Power / Toughness</h4>
+      {{card.power}} / {{card.toughness}}
+    </div>
+
+    <!-- Card Type -->
+    <h4>Card Type</h4>
+    <p>{{card.card_type}}</p>
+
+    <!-- Description -->
+    <h4>Description</h4>
+    <p [innerHTML]="card.card_text | cardTextTransform"></p>
+  </mat-card-content>
+</mat-card>

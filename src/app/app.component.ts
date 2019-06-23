@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public sidenavOpened = false;
+
+  constructor(
+    router: Router
+  ) {
+    router.events.pipe(
+      filter((event) => event instanceof NavigationEnd)
+    ).subscribe(() => this.sidenavOpened = false);
+  }
 }

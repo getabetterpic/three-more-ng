@@ -1,25 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { fakeAsync, tick } from '@angular/core/testing';
 
 import { SearchInputComponent } from './search-input.component';
 
 describe('SearchInputComponent', () => {
   let component: SearchInputComponent;
-  let fixture: ComponentFixture<SearchInputComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SearchInputComponent ]
-    })
-    .compileComponents();
-  }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SearchInputComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = new SearchInputComponent();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('ngOnInit', () => {
+    it('emits the search text after 1 second', fakeAsync(() => {
+      spyOn(component.searchChange, 'emit');
+      component.ngOnInit();
+      component.searchText.setValue('Experimental Frenzy');
+      tick(1000);
+      expect(component.searchChange.emit).toHaveBeenCalledWith('Experimental Frenzy');
+    }));
   });
 });

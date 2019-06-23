@@ -15,4 +15,8 @@ export class CardsService {
     const params = { q: search, page, perPage };
     return this.http.get('/api/v1/cards', { params });
   }
+
+  public show(cardId: string): Observable<any> {
+    return this.http.get(`/api/v1/cards/${cardId}`);
+  }
 }
