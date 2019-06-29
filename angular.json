@@ -63,8 +63,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "three-more-ng:build",
-            "proxyConfig": "src/proxy.conf.json"
+            "browserTarget": "three-more-ng:build"
           },
           "configurations": {
             "production": {

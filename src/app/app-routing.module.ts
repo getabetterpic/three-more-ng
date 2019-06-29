@@ -5,6 +5,11 @@ const routes: Routes = [
   {
     path: 'cards',
     loadChildren: () => import('./cards/cards.module').then(mod => mod.CardsModule)
+  },
+  {
+    path: '',
+    redirectTo: 'cards',
+    pathMatch: 'full'
   }
 ];
 
