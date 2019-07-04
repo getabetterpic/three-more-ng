@@ -13,10 +13,11 @@ export class CardsService {
 
   public index(search: string = '', page: string = '1', perPage?: string): Observable<any> {
     const params = { q: search, page, perPage };
-    return this.http.get('/api/v1/cards', { params });
+    if (params.q == null) { delete params.q; }
+    return this.http.get('/cards', { params });
   }
 
   public show(cardId: string): Observable<any> {
-    return this.http.get(`/api/v1/cards/${cardId}`);
+    return this.http.get(`/cards/${cardId}`);
   }
 }
