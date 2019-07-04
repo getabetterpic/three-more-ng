@@ -1,20 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
 
+import { ComponentsModule } from './components/components.module';
 import { CardsRoutingModule } from './cards-routing.module';
 
-import { CardListComponent } from './card-list/card-list.component';
-import { CardsPageComponent } from './cards-page/cards-page.component';
-import { CardShowPageComponent } from './card-show-page/card-show-page.component';
+// NGRX
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
+import { reducers } from './store';
+import { CardEffects } from './store/effects/card.effects';
 
 @NgModule({
-  declarations: [CardListComponent, CardsPageComponent, CardShowPageComponent],
+  declarations: [],
   imports: [
     CommonModule,
+    RouterModule,
+    StoreModule.forFeature('cards', reducers),
+    EffectsModule.forFeature([CardEffects]),
     CardsRoutingModule,
-    SharedModule
+    SharedModule,
+    ComponentsModule
   ]
 })
 export class CardsModule { }

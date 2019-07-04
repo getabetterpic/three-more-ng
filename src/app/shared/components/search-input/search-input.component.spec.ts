@@ -14,7 +14,7 @@ describe('SearchInputComponent', () => {
   });
 
   describe('ngOnInit', () => {
-    it('emits the search text after 1 second', fakeAsync(() => {
+    it('emits the searchCards text after 1 second', fakeAsync(() => {
       spyOn(component.searchChange, 'emit');
       component.ngOnInit();
       component.searchText.setValue('Experimental Frenzy');

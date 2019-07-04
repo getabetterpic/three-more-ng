@@ -8,6 +8,17 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material/material.module';
 import { ApiInterceptor } from './core/interceptors/api.interceptor';
 
+// NGRX
+import { MetaReducer, StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { storeFreeze } from 'ngrx-store-freeze';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { EffectsModule } from '@ngrx/effects';
+
+import { reducers, CustomSerializer } from './store';
+
+export const metaReducers: Array<MetaReducer<any>> = environment.production ? [] : [storeFreeze];
 
 @NgModule({
   declarations: [
@@ -18,7 +29,13 @@ import { ApiInterceptor } from './core/interceptors/api.interceptor';
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer
+    }),
+    EffectsModule.forRoot([])
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }

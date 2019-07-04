@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CardsService } from '../../core/services/cards.service';
+import { CardsService } from '../../../core/services/cards.service';
 
 @Component({
   selector: 'tmm-card-show-page',
