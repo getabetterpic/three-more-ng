@@ -16,11 +16,11 @@ export class CardsStoreService {
     private store: Store<fromStore.CardsState>
   ) { }
 
-  public updateSearch(searchTerm: string): void {
-    this.store.dispatch(fromStore.loadCards({ searchTerm, page: '1' }));
+  public updateSearch(search: string): void {
+    this.store.dispatch(fromStore.updateSearch({ search }));
   }
 
   public getCards(searchTerm: string, page: string = '1', perPage?: string): void {
-    this.store.dispatch(fromStore.loadCards({ searchTerm, page, perPage }));
+    this.store.dispatch(fromStore.loadCards({ search: searchTerm, page, perPage }));
   }
 }

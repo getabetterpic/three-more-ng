@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { CardsStoreService } from '@/app/cards/services/cards-store.service';
@@ -9,7 +9,6 @@ import { CardsStoreService } from '@/app/cards/services/cards-store.service';
   styleUrls: ['./card-list.component.scss']
 })
 export class CardListComponent implements OnInit {
-  @Input() public searchText: string;
   public cards$: Observable<any[]>;
 
   constructor(
@@ -18,9 +17,6 @@ export class CardListComponent implements OnInit {
 
   public ngOnInit(): void {
     this.cards$ = this.cardsStore.cards$;
-    if (!this.searchText) {
-      this.cardsStore.getCards('');
-    }
   }
 
 }

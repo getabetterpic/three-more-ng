@@ -14,6 +14,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './store';
 import { CardEffects } from './store/effects/card.effects';
 
+import * as fromGuards from './guards';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -24,6 +26,7 @@ import { CardEffects } from './store/effects/card.effects';
     CardsRoutingModule,
     SharedModule,
     ComponentsModule
-  ]
+  ],
+  providers: [...fromGuards.guards]
 })
 export class CardsModule { }
