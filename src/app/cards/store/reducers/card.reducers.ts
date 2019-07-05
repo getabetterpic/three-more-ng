@@ -3,7 +3,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 
 export interface CardsState {
   cards: any[];
-  searchTerm: string;
+  search: string;
   loading: boolean;
   loaded: boolean;
   errors: any[];
@@ -11,7 +11,7 @@ export interface CardsState {
 
 export const initialState: CardsState = {
   cards: [],
-  searchTerm: '',
+  search: '',
   loading: false,
   loaded: false,
   errors: null
@@ -19,11 +19,12 @@ export const initialState: CardsState = {
 
 const cardsReducer = createReducer(
   initialState,
-  on(cardActions.loadCards, (state, { searchTerm }) => {
+  on(cardActions.loadCards, (state, { search }) => {
     return {
       ...state,
       loading: true,
-      searchTerm
+      loaded: false,
+      search
     };
   }),
   on(cardActions.loadCardsSuccess, (state, {cards}) => {
@@ -40,6 +41,13 @@ const cardsReducer = createReducer(
       loading: false,
       loaded: false,
       errors
+    };
+  }),
+  on(cardActions.updateSearch, (state, { search }) => {
+    return {
+      ...state,
+      search,
+      loaded: false
     };
   })
 );

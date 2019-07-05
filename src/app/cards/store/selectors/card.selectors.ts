@@ -30,5 +30,5 @@ export const selectCardsError = createSelector(
 
 export const selectSearchTerm = createSelector(
   selectCardState,
-  (state: fromCards.CardsState) => state.searchTerm
+  (state: fromCards.CardsState) => state.search
 );

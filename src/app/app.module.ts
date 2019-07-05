@@ -16,7 +16,7 @@ import { storeFreeze } from 'ngrx-store-freeze';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { reducers, CustomSerializer } from './store';
+import { effects, reducers, CustomSerializer } from './store';
 
 export const metaReducers: Array<MetaReducer<any>> = environment.production ? [] : [storeFreeze];
 
@@ -35,7 +35,7 @@ export const metaReducers: Array<MetaReducer<any>> = environment.production ? []
     StoreRouterConnectingModule.forRoot({
       serializer: CustomSerializer
     }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot(effects)
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }
