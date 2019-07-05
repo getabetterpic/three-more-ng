@@ -1,9 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-import { OnChange } from '@/app/core/decorators/on-change';
-
-import { CardsService } from '@/app/core/services/cards.service';
 import { Observable } from 'rxjs';
+
 import { CardsStoreService } from '@/app/cards/services/cards-store.service';
 
 @Component({

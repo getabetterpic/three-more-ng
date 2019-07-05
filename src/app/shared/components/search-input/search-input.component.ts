@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { OnChange } from '@/app/core/decorators/on-change';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
+
 import { CardsStoreService } from '@/app/cards/services/cards-store.service';
+import { OnChange } from '@/app/core/decorators/on-change';
 
 @Component({
   selector: 'tmm-search-input',
@@ -11,11 +12,10 @@ import { CardsStoreService } from '@/app/cards/services/cards-store.service';
   styleUrls: ['./search-input.component.scss']
 })
 export class SearchInputComponent implements OnInit, OnDestroy {
-  @OnChange<string>(function(value) {
-    this.searchText.setValue(value, { emitEvent: false });
+  @OnChange<string>(function(search) {
+    this.searchText.setValue(search, { emitEvent: false });
   })
   @Input() public initialSearch: string;
-  @Output() public searchChange = new EventEmitter<string>();
   public searchText = new FormControl('');
 
   private destroy = new Subject<void>();
