@@ -11,9 +11,13 @@ export class CardsService {
     private http: HttpClient
   ) { }
 
-  public index(search: string = '', page: string = '1', perPage?: string): Observable<any> {
-    const params = { q: search, page, perPage };
-    if (params.q == null) { delete params.q; }
+  public index(search: string = '', page: string = '1', ids?: string[], perPage?: string): Observable<any> {
+    const params = { q: search, page, perPage, ids };
+    for (const param in params) {
+      if (params.hasOwnProperty(param)) {
+        if (!params[param]) { delete params[param]; }
+      }
+    }
     return this.http.get('/cards', { params });
   }
 

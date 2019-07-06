@@ -2,35 +2,51 @@ import * as cardActions from '../actions/card.actions';
 import { Action, createReducer, on } from '@ngrx/store';
 
 export interface CardsState {
-  cards: any[];
   search: string;
   loading: boolean;
   loaded: boolean;
   errors: any[];
+  entities: { [key: string]: any };
+  selectedCardId: string;
+  ids: string[];
 }
 
 export const initialState: CardsState = {
-  cards: [],
   search: '',
   loading: false,
   loaded: false,
-  errors: null
+  errors: null,
+  entities: {},
+  selectedCardId: null,
+  ids: []
 };
 
 const cardsReducer = createReducer(
   initialState,
-  on(cardActions.loadCards, (state, { search }) => {
+  on(cardActions.loadCards, (state, { ids }) => {
     return {
       ...state,
       loading: true,
       loaded: false,
-      search
+      ids
     };
   }),
-  on(cardActions.loadCardsSuccess, (state, {cards}) => {
+  on(cardActions.setSelectedCardId, (state, { cardId }) => {
     return {
       ...state,
-      cards,
+      selectedCardId: cardId
+    };
+  }),
+  on(cardActions.loadCardsSuccess, (state, { cards }) => {
+    const entities = cards.reduce((accum, card) => {
+      return {
+        ...accum,
+        [card.id]: card
+      };
+    }, {});
+    return {
+      ...state,
+      entities,
       loading: false,
       loaded: true
     };
@@ -41,13 +57,6 @@ const cardsReducer = createReducer(
       loading: false,
       loaded: false,
       errors
-    };
-  }),
-  on(cardActions.updateSearch, (state, { search }) => {
-    return {
-      ...state,
-      search,
-      loaded: false
     };
   })
 );

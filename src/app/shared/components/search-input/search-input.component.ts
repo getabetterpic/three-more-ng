@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 
-import { CardsStoreService } from '@/app/cards/services/cards-store.service';
+import { Store } from '@ngrx/store';
+
+import * as fromRoot from '@/app/store';
 
 @Component({
   selector: 'tmm-search-input',
@@ -16,12 +18,14 @@ export class SearchInputComponent implements OnInit, OnDestroy {
   private destroy = new Subject<void>();
 
   constructor(
-    private cardsStore: CardsStoreService
+    private store: Store<fromRoot.State>
   ) { }
 
   public ngOnInit() {
     this.subscribeToSearch();
-    this.cardsStore.searchTerm$.pipe(
+    this.store.select(fromRoot.getQueryParams).pipe(
+      map(({ search }) => search),
+      distinctUntilChanged(),
       takeUntil(this.destroy)
     ).subscribe((search) => {
       this.searchText.setValue(search, { emitEvent: false });
@@ -39,7 +43,7 @@ export class SearchInputComponent implements OnInit, OnDestroy {
       distinctUntilChanged(),
       takeUntil(this.destroy)
     ).subscribe((text) => {
-      this.cardsStore.updateSearch(text);
+      this.store.dispatch(fromRoot.Go({ path: ['/cards'], query: { search: text } }));
     });
   }
 
