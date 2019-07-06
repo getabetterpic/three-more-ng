@@ -1,27 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CardsService } from '../../../core/services/cards.service';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { CardsStoreService } from '@/app/cards/services/cards-store.service';
+import { Card } from '@/app/models/card';
 
 @Component({
   selector: 'tmm-card-show-page',
   templateUrl: './card-show-page.component.html',
-  styleUrls: ['./card-show-page.component.scss']
+  styleUrls: ['./card-show-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardShowPageComponent implements OnInit {
-  public card: any = {};
+  public card$: Observable<Card>;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private cardsService: CardsService
+    private cardsStore: CardsStoreService
   ) { }
 
   public ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe((paramMap) => {
-      const cardId = paramMap.get('cardId');
-      this.cardsService.show(cardId).subscribe((card) => {
-        this.card = card;
-      });
-    });
+    this.card$ = this.cardsStore.selectedCard$;
   }
 
 }

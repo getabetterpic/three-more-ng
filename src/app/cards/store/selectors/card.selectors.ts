@@ -8,9 +8,25 @@ export const selectCardState = createSelector(
   (state: fromFeature.CardsState) => state.cards
 );
 
-export const selectCards = createSelector(
+export const selectCardEntities = createSelector(
   selectCardState,
-  (state: fromCards.CardsState) => state.cards
+  (state: fromCards.CardsState) => state.entities
+);
+
+export const selectCards = createSelector(
+  selectCardEntities,
+  (entities) => Object.keys(entities).map((cardId) => entities[cardId])
+);
+
+export const selectedCardId = createSelector(
+  selectCardState,
+  (state) => state.selectedCardId
+);
+
+export const selectedCard = createSelector(
+  selectCardEntities,
+  selectedCardId,
+  (entities, cardId) => entities[cardId]
 );
 
 export const selectCardsLoading = createSelector(
