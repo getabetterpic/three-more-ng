@@ -16,8 +16,8 @@ export class CardEffects {
     distinctUntilChanged(),
     mergeMap(({ ids }) => {
       return this.store.select(fromRoot.getQueryParams).pipe(
-        switchMap(({ search }) => {
-          return this.cardsService.index(search, '1', ids);
+        switchMap(({ search, standard_legal }) => {
+          return this.cardsService.index({ search, page: '1', ids, standard_legal });
         }),
         take(1)
       );

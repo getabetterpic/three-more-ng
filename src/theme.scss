@@ -1,0 +1,22 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+@mixin tmm-theme($theme) {
+  $primary: map-get($theme, primary);
+  $secondary: map-get($theme, secondary);
+
+  a {
+    color: $light-primary-text;
+  }
+}
+
+$tmm-theme-primary: mat-palette($mat-purple);
+$tmm-theme-secondary: mat-palette($mat-green);
+$tmm-theme-warn: mat-palette($mat-red);
+
+$tmm-theme: mat-dark-theme($tmm-theme-primary, $tmm-theme-secondary, $tmm-theme-warn);
+
+$custom-typography: mat-typography-config(
+  $font-family: "'PT Serif', serif"
+);

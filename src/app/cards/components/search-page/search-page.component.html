@@ -1,0 +1,10 @@
+<form [formGroup]="searchForm" (ngSubmit)="searchCards()">
+  <tmm-search-input formControlName="search"></tmm-search-input><br />
+  <mat-checkbox color="primary" formControlName="standard_legal">
+    Standard Legal
+  </mat-checkbox>
+  <br />
+  <button class="btn" color="primary" mat-raised-button>
+    Search
+  </button>
+</form>
