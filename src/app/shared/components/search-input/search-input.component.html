@@ -1,4 +1,5 @@
 <mat-form-field>
   <input matInput type="text" placeholder="Search..."
          [formControl]="searchText">
+  <mat-hint *ngIf="showAdvanced"><a [routerLink]="['/cards/search']">Advanced</a></mat-hint>
 </mat-form-field>

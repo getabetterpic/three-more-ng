@@ -2,6 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+interface IndexOptions {
+  search?: string;
+  page?: string;
+  ids?: string[];
+  perPage?: string;
+  standard_legal?: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,8 +19,9 @@ export class CardsService {
     private http: HttpClient
   ) { }
 
-  public index(search: string = '', page: string = '1', ids?: string[], perPage?: string): Observable<any> {
-    const params = { q: search, page, perPage, ids };
+  public index(options: IndexOptions = {}): Observable<any> {
+    const { search, page, perPage, ids, standard_legal } = options;
+    const params = { q: search, page, perPage, ids, standard_legal };
     for (const param in params) {
       if (params.hasOwnProperty(param)) {
         if (!params[param]) { delete params[param]; }

@@ -1,15 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=PT+Serif:400,500&display=swap');
-
+@import './theme';
 @import '~@angular/material/theming';
 
-$custom-typography: mat-typography-config(
-  $font-family: "'PT Serif', serif"
-);
+@include mat-core();
 
 @include angular-material-typography($custom-typography);
 
-@import '~@angular/material/prebuilt-themes/purple-green.css';
+@include angular-material-theme($tmm-theme);
+@include tmm-theme($tmm-theme);
 
 .u-padding-left-16 {
   padding-left: 16px;

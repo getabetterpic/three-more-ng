@@ -5,6 +5,7 @@ import * as fromGuards from './guards';
 
 import { CardsPageComponent } from './components/cards-page/cards-page.component';
 import { CardShowPageComponent } from './components/card-show-page/card-show-page.component';
+import { SearchPageComponent } from '@/app/cards/components/search-page/search-page.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
     canActivate: [fromGuards.CardsGuard],
     component: CardsPageComponent,
     runGuardsAndResolvers: 'paramsOrQueryParamsChange'
+  },
+  {
+    path: 'search',
+    component: SearchPageComponent
   },
   {
     path: ':cardId',
