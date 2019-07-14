@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { Card } from '@/app/models/card';
+
 interface IndexOptions {
   search?: string;
   page?: string;
@@ -20,7 +22,7 @@ export class CardsService {
     private http: HttpClient
   ) { }
 
-  public index(options: IndexOptions = {}): Observable<any> {
+  public index(options: IndexOptions = {}): Observable<{ cards: Card[] }> {
     const { search, page, perPage, ids, standard_legal, set } = options;
     const params = { q: search, page, perPage, ids, standard_legal, set };
     for (const param in params) {
@@ -28,7 +30,7 @@ export class CardsService {
         if (!params[param]) { delete params[param]; }
       }
     }
-    return this.http.get('/cards', { params });
+    return this.http.get<{ cards: Card[] }>('/cards', { params });
   }
 
   public show(cardId: string): Observable<any> {

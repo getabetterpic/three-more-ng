@@ -62,7 +62,7 @@ export class SearchInputComponent implements OnInit, OnDestroy, ControlValueAcce
 
   private subscribeToSearch(): void {
     this.searchText.valueChanges.pipe(
-      debounceTime(300),
+      debounceTime(1000),
       distinctUntilChanged(),
       takeUntil(this.destroy)
     ).subscribe((text) => {
