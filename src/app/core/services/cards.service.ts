@@ -8,6 +8,7 @@ interface IndexOptions {
   ids?: string[];
   perPage?: string;
   standard_legal?: string;
+  set?: string;
 }
 
 @Injectable({
@@ -20,8 +21,8 @@ export class CardsService {
   ) { }
 
   public index(options: IndexOptions = {}): Observable<any> {
-    const { search, page, perPage, ids, standard_legal } = options;
-    const params = { q: search, page, perPage, ids, standard_legal };
+    const { search, page, perPage, ids, standard_legal, set } = options;
+    const params = { q: search, page, perPage, ids, standard_legal, set };
     for (const param in params) {
       if (params.hasOwnProperty(param)) {
         if (!params[param]) { delete params[param]; }

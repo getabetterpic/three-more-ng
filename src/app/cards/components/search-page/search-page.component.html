@@ -3,6 +3,20 @@
   <mat-checkbox color="primary" formControlName="standard_legal">
     Standard Legal
   </mat-checkbox>
+  <mat-checkbox color="primary" formControlName="modern_legal">
+    Modern Legal
+  </mat-checkbox>
+  <mat-form-field>
+    <mat-label>Set</mat-label>
+    <mat-select formControlName="set">
+      <mat-option>
+        <ngx-mat-select-search [formControl]="setSearch" placeholderLabel="Search..."></ngx-mat-select-search>
+      </mat-option>
+      <mat-option *ngFor="let set of filteredSets | async" [value]="set.id">
+        {{set.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <button color="primary" mat-raised-button>
     Search
   </button>
