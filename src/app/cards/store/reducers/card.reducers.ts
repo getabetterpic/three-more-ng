@@ -1,12 +1,15 @@
-import * as cardActions from '../actions/card.actions';
 import { Action, createReducer, on } from '@ngrx/store';
+
+import * as cardActions from '../actions/card.actions';
+
+import { Card } from '@/app/models/card';
 
 export interface CardsState {
   search: string;
   loading: boolean;
   loaded: boolean;
   errors: any[];
-  entities: { [key: string]: any };
+  entities: { [key: string]: Card };
   selectedCardId: string;
   ids: string[];
 }
