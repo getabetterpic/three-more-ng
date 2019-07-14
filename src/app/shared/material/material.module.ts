@@ -9,8 +9,10 @@ import {
   MatListModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatSelectModule
 } from '@angular/material';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
   declarations: [],
@@ -24,7 +26,9 @@ import {
     MatInputModule,
     MatCardModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule,
+    NgxMatSelectSearchModule
   ],
   exports: [
     MatListModule,
@@ -35,7 +39,9 @@ import {
     MatInputModule,
     MatCardModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule,
+    NgxMatSelectSearchModule
   ]
 })
 export class MaterialModule { }

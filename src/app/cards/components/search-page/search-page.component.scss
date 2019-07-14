@@ -1,11 +1,10 @@
 form {
-  .btn {
-    margin-top: 12px;
-  }
-}
-
-form {
+  width: 300px;
   display: grid;
   grid-template-rows: 1fr;
   grid-row-gap: 12px;
+
+  .btn {
+    margin-top: 12px;
+  }
 }
