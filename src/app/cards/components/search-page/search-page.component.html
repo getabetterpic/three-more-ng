@@ -7,6 +7,16 @@
     Modern Legal
   </mat-checkbox>
   <mat-form-field>
+    <mat-label>Mana Cost</mat-label>
+    <input type="text" matInput placeholder="{U}{W}" formControlName="mana_cost" />
+    <mat-hint>Search for specific mana symbols</mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>CMC</mat-label>
+    <input type="tel" matInput placeholder="3" formControlName="cmc" />
+    <mat-hint>Converted mana cost</mat-hint>
+  </mat-form-field>
+  <mat-form-field>
     <mat-label>Set</mat-label>
     <mat-select formControlName="set">
       <mat-option>
@@ -16,6 +26,7 @@
         {{set.name}}
       </mat-option>
     </mat-select>
+    <mat-hint>Filter by set</mat-hint>
   </mat-form-field>
   <button color="primary" mat-raised-button>
     Search
