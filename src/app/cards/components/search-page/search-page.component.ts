@@ -30,6 +30,8 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       search: '',
       standard_legal: false,
       modern_legal: false,
+      mana_cost: '',
+      cmc: '',
       set: ''
     });
   }

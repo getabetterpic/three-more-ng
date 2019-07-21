@@ -7,16 +7,16 @@
   <mat-card-content>
     <!-- Power and Toughness -->
     <div *ngIf="card.power != null && card.toughness != null">
-      <h4>Power / Toughness</h4>
-      {{card.power}} / {{card.toughness}}
+      <h3>Power / Toughness</h3>
+      <p>{{card.power}} / {{card.toughness}}</p>
     </div>
 
     <!-- Card Type -->
-    <h4>Card Type</h4>
+    <h3>Card Type</h3>
     <p>{{card.card_type}}</p>
 
     <!-- Description -->
-    <h4>Description</h4>
-    <p [innerHTML]="card.card_text | cardTextTransform"></p>
+    <h3>Description</h3>
+    <p *ngFor="let text of card.card_text | cardTextTransform" [innerHTML]="text"></p>
   </mat-card-content>
 </mat-card>

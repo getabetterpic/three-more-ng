@@ -10,6 +10,9 @@ interface IndexOptions {
   ids?: string[];
   perPage?: string;
   standard_legal?: string;
+  modern_legal?: string;
+  mana_cost?: string;
+  cmc?: string;
   set?: string;
 }
 
@@ -23,8 +26,7 @@ export class CardsService {
   ) { }
 
   public index(options: IndexOptions = {}): Observable<{ cards: Card[] }> {
-    const { search, page, perPage, ids, standard_legal, set } = options;
-    const params = { q: search, page, perPage, ids, standard_legal, set };
+    const params = { q: options.search, ...options };
     for (const param in params) {
       if (params.hasOwnProperty(param)) {
         if (!params[param]) { delete params[param]; }
