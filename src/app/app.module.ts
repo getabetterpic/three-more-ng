@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { Auth0Module } from '@/app/auth0/auth0.module';
 import { MaterialModule } from './shared/material/material.module';
 import { ApiInterceptor } from './core/interceptors/api.interceptor';
 
@@ -22,13 +23,14 @@ export const metaReducers: Array<MetaReducer<any>> = environment.production ? []
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
+    Auth0Module,
     AppRoutingModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),

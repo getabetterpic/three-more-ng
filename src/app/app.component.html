@@ -3,6 +3,9 @@
             aria-hidden="false"
             aria-label="menu icon">menu</mat-icon>
   <h1 class="u-padding-left-16">Three More Mana</h1>
+  <span class="main--fill-middle"></span>
+  <button mat-button type="button" *ngIf="!auth.loggedIn" (click)="auth.login()">Sign In</button>
+  <button mat-button type="button" *ngIf="auth.loggedIn" (click)="auth.logout()">Sign Out</button>
 </mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav class="main--sidenav"
